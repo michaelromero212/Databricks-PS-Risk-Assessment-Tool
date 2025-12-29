@@ -3,10 +3,10 @@
 <div align="center">
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![Databricks](https://img.shields.io/badge/Databricks-Free%20Edition-orange)
-![License](https://img.shields.io/badge/license-Internal-green)
+![Databricks](https://img.shields.io/badge/Databricks-Professional%20Services-orange)
+![AI](https://img.shields.io/badge/AI-Hugging%20Face-yellow)
 
-**Surface early delivery risk across customer engagements using Databricks-native telemetry and AI-powered insights**
+**An AI-powered engagement health monitoring tool for Databricks Professional Services teams**
 
 </div>
 
@@ -14,60 +14,92 @@
 
 ## Overview
 
-The PS Risk Assessment Tool is an internal POC designed for Databricks Professional Services teams to:
+The PS Risk Assessment Tool is an internal application designed to help Databricks Professional Services teams proactively identify and manage delivery risk across customer engagements. It combines **platform signal analysis** with **AI-powered insights** to surface early warning indicators and provide actionable recommendations.
 
-- **Identify delivery risk early** through platform signal analysis
-- **Get AI-powered explanations** of risk factors and mitigation suggestions
-- **Track engagement health** across your entire portfolio
-- **Enable data-driven decisions** with transparent, auditable scoring
+### Who Is This For?
 
-This tool augments human judgment—it does not replace it.
+- **Solution Architects** monitoring their active engagements
+- **Delivery Managers** tracking portfolio health
+- **PS Leadership** measuring program impact and ROI
 
-## Key Features
+### Key Capabilities
 
 | Feature | Description |
 |---------|-------------|
-| 📊 **Risk Scoring Engine** | Rule-based heuristics with weighted signal aggregation |
-| 🤖 **AI Explanations** | Hugging Face model for plain-English risk explanations |
-| 🚀 **Program Impact** | Track ROI, time saved, and adoption for PS Leadership |
-| ☁️ **Databricks Native** | Live Unity Catalog browsing and SDK integration |
-| 💡 **Smart Recs** | Actionable delivery advice for PS practitioners |
-| 📈 **Interactive Dashboards** | React UI + Dash/Plotly visualizations |
-| 🔒 **Transparency** | Full AI model metadata visibility |
-| ♿ **Accessibility** | WCAG AA compliant, color-blind safe |
+| 📊 **Risk Scoring** | Automated scoring based on platform signals and SA confidence |
+| 🤖 **AI Explanations** | Natural language risk summaries using Hugging Face models |
+| 💡 **Smart Recommendations** | Actionable delivery advice based on risk factors |
+| 📈 **Program Metrics** | Track ROI, time saved, and team adoption rates |
+| 📁 **Data Import** | Upload engagement data via CSV for instant analysis |
+| ☁️ **Unity Catalog** | Browse workspace metadata directly in the dashboard |
 
-## Architecture
+---
 
-For a detailed technical breakdown, see the [System Architecture](file:///Users/michaelromero/Documents/Databricks-PS-Risk-Assessment-Tool/docs/ARCHITECTURE.md).
+## Screenshots
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                         Frontend Layer                               │
-│  ┌─────────────────────┐    ┌──────────────────────────────────┐   │
-│  │   React SPA (3000)  │    │   Dash Dashboard (8050)          │   │
-│  │   - Overview        │    │   - Risk Distribution            │   │
-│  │   - Detail View     │    │   - Trend Analysis               │   │
-│  │   - AI Panel        │    │   - Metrics                      │   │
-│  └──────────┬──────────┘    └───────────────┬──────────────────┘   │
-└─────────────┼───────────────────────────────┼──────────────────────┘
-              │                               │
-              ▼                               ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                         Backend API (5000)                           │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────────┐ │
-│  │  Engagements    │  │  Risk Engine    │  │   AI Explainer      │ │
-│  │  API           │  │  Service        │  │   (Hugging Face)    │ │
-│  └─────────────────┘  └─────────────────┘  └─────────────────────┘ │
-└────────────────────────────────┬────────────────────────────────────┘
-                                 │
-                                 ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                      Databricks (Delta Lake)                         │
-│  ┌────────────┐ ┌────────────┐ ┌────────────┐ ┌────────────────┐   │
-│  │ Engagements│ │  Signals   │ │Risk Scores │ │AI Explanations │   │
-│  └────────────┘ └────────────┘ └────────────┘ └────────────────┘   │
-└─────────────────────────────────────────────────────────────────────┘
-```
+### Engagement Overview
+The main landing page showing all active PS engagements with their current risk levels, Solution Architects, and key dates.
+
+![Engagement Overview](docs/screenshots/01_engagement_overview.jpg)
+
+---
+
+### Analytics Dashboard
+Real-time analytics showing risk distribution, program success metrics, and AI coverage across all engagements.
+
+![Analytics Dashboard - Top](docs/screenshots/03_dashboard_top.jpg)
+
+**Key sections:**
+- **Active Engagements** - Total count with High/Medium/Low breakdown
+- **Program Success & ROI** - Assessments generated, AI insights delivered, time saved
+- **Risk Distribution** - Visual pie chart of portfolio health
+- **Engagements by Industry** - Horizontal bar chart breakdown
+
+---
+
+### Unity Catalog Browser & AI Model Status
+The dashboard bottom section includes live Unity Catalog browsing and full AI model transparency.
+
+![Dashboard - Unity Catalog & AI](docs/screenshots/05_dashboard_bottom.jpg)
+
+**Features:**
+- **Risk Score Trend** - 14-day historical view with threshold lines
+- **Unity Catalog Browser** - Browse catalogs, schemas, and tables from your workspace
+- **All Engagements Table** - Sortable list with risk levels and trends
+- **AI Model Status** - Full transparency on the AI model used (google/flan-t5-base)
+
+---
+
+### Import Engagement Data
+Upload your own engagement data via CSV to generate instant risk assessments.
+
+![Import Data](docs/screenshots/04_import_data.jpg)
+
+**Workflow:**
+1. Download the CSV template
+2. Fill in your engagement details
+3. Upload and get AI-powered risk scores automatically
+
+---
+
+### User Feedback
+Help improve the tool by submitting feature requests and feedback.
+
+![Feedback Form](docs/screenshots/02_feedback.jpg)
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Frontend** | React 18, Recharts, CSS Variables |
+| **Backend** | Python 3.9+, Flask, Flask-CORS |
+| **AI/ML** | Hugging Face Transformers (google/flan-t5-base) |
+| **Data** | Pydantic schemas, in-memory store (extensible to Delta Lake) |
+| **Platform** | Databricks SDK for Unity Catalog integration |
+
+---
 
 ## Quick Start
 
@@ -75,177 +107,158 @@ For a detailed technical breakdown, see the [System Architecture](file:///Users/
 
 - Python 3.9+
 - Node.js 18+
-- Databricks workspace (Free Edition compatible)
+- Databricks workspace (optional, for live Unity Catalog)
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/michaelromero212/Databricks-PS-Risk-Assessment-Tool.git
 cd Databricks-PS-Risk-Assessment-Tool
 
-# Run setup script
-chmod +x scripts/setup.sh
-./scripts/setup.sh
+# Backend setup
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Frontend setup
+cd frontend
+npm install
 ```
 
 ### Configuration
 
-1. Copy the environment template:
-   ```bash
-   cp .env.template .env
-   ```
-
-2. Edit `.env` with your credentials:
-   ```bash
-   DATABRICKS_HOST=https://your-workspace.cloud.databricks.com
-   DATABRICKS_TOKEN=your-personal-access-token
-   ```
+```bash
+cp .env.template .env
+# Edit .env with your settings (optional Databricks credentials)
+```
 
 ### Running the Application
 
-**Terminal 1 - Backend API:**
+**Terminal 1 - Backend:**
 ```bash
 source venv/bin/activate
 python -m backend.app
+# Runs on http://localhost:5001
 ```
 
-**Terminal 2 - React Frontend:**
+**Terminal 2 - Frontend:**
 ```bash
 cd frontend
 npm start
+# Runs on http://localhost:3000
 ```
 
-**Terminal 3 - Dash Dashboard:**
-```bash
-source venv/bin/activate
-python dashboards/app.py
-```
+---
 
-### Access Points
+## Risk Scoring Model
 
-| Service | URL |
-|---------|-----|
-| React UI | http://localhost:3000 |
-| Dash Dashboard | http://localhost:8050 |
-| Backend API | http://localhost:5000 |
-
-## Risk Scoring
-
-### Scoring Weights
+### Signal Weights
 
 | Signal | Weight | Description |
 |--------|--------|-------------|
-| Job Failure Rate | 25% | Percentage of failed jobs |
+| Job Failure Rate | 25% | Percentage of failed Databricks jobs |
 | Job Duration Trend | 15% | Increasing execution times |
-| Activity Recency | 20% | Days since last activity |
-| SA Confidence | 20% | Self-reported confidence (1-5) |
-| Schedule Variance | 20% | Timeline progress |
+| Activity Recency | 20% | Days since last platform activity |
+| SA Confidence | 20% | Self-reported confidence (1-5 scale) |
+| Schedule Variance | 20% | Timeline progress vs. plan |
 
 ### Risk Levels
 
-| Level | Score Range | Action |
-|-------|-------------|--------|
-| 🟢 Low | 0-35 | Continue monitoring |
-| 🟡 Medium | 36-65 | Review and address concerns |
-| 🔴 High | 66-100 | Immediate intervention needed |
+| Level | Score | Action |
+|-------|-------|--------|
+| 🟢 **Low** | 0-35 | Continue monitoring |
+| 🟡 **Medium** | 36-65 | Review and address concerns |
+| 🔴 **High** | 66-100 | Immediate intervention needed |
+
+---
 
 ## AI Transparency
 
-The tool uses **Hugging Face models** for generating risk explanations:
+All AI-generated content includes full model metadata:
 
 | Property | Value |
 |----------|-------|
-| Model Name | google/flan-t5-base |
-| Provider | Hugging Face |
-| Purpose | Risk explanation and recommendation |
+| **Model** | google/flan-t5-base |
+| **Provider** | Hugging Face |
+| **Purpose** | Risk explanation and recommendation generation |
+| **Status** | Displayed on every AI output (Generated/Cached) |
 
-All AI outputs display:
-- Model name and provider
-- Generation status (Generated / Cached / Unavailable)
-- Timestamp of generation
+---
 
 ## Project Structure
 
 ```
 Databricks-PS-Risk-Assessment-Tool/
-├── backend/                    # Flask API
-│   ├── app.py                  # Application entry point
-│   ├── config.py               # Configuration loader
-│   ├── routes/                 # API endpoints
-│   ├── services/               # Business logic
-│   │   ├── risk_engine.py      # Risk scoring
-│   │   ├── ai_explainer.py     # AI integration
-│   │   └── data_store.py       # Demo data
-│   └── models/                 # Pydantic schemas
-├── frontend/                   # React SPA
+├── backend/
+│   ├── app.py              # Flask application entry
+│   ├── config.py           # Configuration loader
+│   ├── routes/             # API endpoints
+│   │   ├── engagements.py  # Engagement CRUD
+│   │   ├── metrics.py      # Dashboard metrics
+│   │   ├── import_data.py  # CSV import
+│   │   ├── databricks.py   # Unity Catalog API
+│   │   └── feedback.py     # User feedback
+│   ├── services/           # Business logic
+│   │   ├── risk_engine.py  # Risk scoring
+│   │   ├── ai_explainer.py # AI integration
+│   │   ├── recommendations.py  # Smart recs
+│   │   └── data_store.py   # Data persistence
+│   └── models/             # Pydantic schemas
+├── frontend/
 │   ├── src/
-│   │   ├── components/         # Reusable components
-│   │   ├── pages/              # Page components
-│   │   └── index.css           # Design system
-├── dashboards/                 # Dash + Plotly
-│   ├── app.py                  # Dashboard application
-│   ├── layouts/                # Layout components
-│   └── components/             # Chart components
-├── databricks/                 # Databricks artifacts
-│   ├── notebooks/              # PySpark notebooks
-│   ├── sql/                    # SQL scripts
-│   └── jobs/                   # Job configurations
-└── scripts/                    # Utility scripts
+│   │   ├── pages/          # React pages
+│   │   ├── components/     # Reusable components
+│   │   └── index.css       # Design system
+├── docs/
+│   ├── ARCHITECTURE.md     # System architecture
+│   └── screenshots/        # App screenshots
+└── sample_data/            # Sample CSV files
 ```
 
-## Databricks Notebooks
+---
 
-| Notebook | Purpose |
-|----------|---------|
-| `01_create_delta_tables.py` | Create Delta Lake tables |
-| `02_generate_sample_data.py` | Populate with demo data |
-| `03_risk_scoring_engine.py` | Compute risk scores |
-| `04_ai_explanation_generator.py` | Generate AI explanations |
-
-## API Endpoints
+## API Reference
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/api/engagements` | GET | List all engagements |
 | `/api/engagements/{id}` | GET | Get engagement details |
-| `/api/engagements/{id}/risk` | GET | Get risk score |
-| `/api/engagements/{id}/explanation` | GET | Get AI explanation |
-| `/api/metrics` | GET | Get PS metrics |
-| `/api/metrics/ai-status` | GET | Get AI model status |
+| `/api/engagements/{id}/risk` | GET | Get risk score + recommendations |
+| `/api/metrics/summary` | GET | Dashboard summary metrics |
+| `/api/metrics/program-impact` | GET | Program ROI metrics |
+| `/api/import/csv` | POST | Import engagement CSV |
+| `/api/databricks/catalogs` | GET | List Unity Catalogs |
+| `/api/feedback` | POST | Submit user feedback |
 
-## Demo Scenario
+---
 
-1. **View Overview** - See all engagements with risk levels
-2. **Filter High Risk** - Focus on critical engagements
-3. **Drill Into Details** - Click an engagement for full analysis
-4. **Review AI Explanation** - Understand risk factors
-5. **Check Mitigations** - Get actionable recommendations
-6. **Verify AI Metadata** - Confirm model transparency
+## Security & Compliance
 
-## Security
-
-- ✅ No secrets committed to git
-- ✅ Environment variables for all sensitive data
+- ✅ No secrets committed to repository
+- ✅ Environment variables for all credentials
 - ✅ `.env` excluded via `.gitignore`
-- ✅ Template provided for configuration
+- ✅ CORS configured for localhost development
+
+---
 
 ## Accessibility
 
-- ✅ Color-blind safe palette
-- ✅ High contrast ratios (WCAG AA)
-- ✅ Keyboard navigation
-- ✅ Screen reader compatible
-- ✅ Reduced motion support
+- ✅ WCAG AA compliant color contrast
+- ✅ Color-blind safe risk indicators
+- ✅ Keyboard navigation support
+- ✅ Screen reader compatible labels
 
-## License
+---
 
-Internal use only - Databricks Professional Services
+## Contributing
+
+This is an internal Databricks Professional Services tool. For feature requests or issues, use the in-app Feedback form or contact the PS AI Tooling team.
 
 ---
 
 <div align="center">
 
-**Built for Databricks Professional Services**
+**Built for Databricks Professional Services** | [Architecture Docs](docs/ARCHITECTURE.md)
 
 </div>
