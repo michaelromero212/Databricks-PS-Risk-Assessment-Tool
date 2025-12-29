@@ -1,0 +1,37 @@
+{
+    "name": "PS Risk Assessment - Daily Scoring Job",
+    "description": "Scheduled job to compute risk scores and generate AI explanations for all engagements",
+    "tasks": [
+        {
+            "task_key": "compute_risk_scores",
+            "description": "Run risk scoring engine",
+            "notebook_task": {
+                "notebook_path": "/Workspace/ps_risk_assessment/03_risk_scoring_engine",
+                "source": "WORKSPACE"
+            },
+            "timeout_seconds": 3600,
+            "max_retries": 1
+        },
+        {
+            "task_key": "generate_ai_explanations",
+            "description": "Generate AI explanations for all engagements",
+            "depends_on": [
+                {
+                    "task_key": "compute_risk_scores"
+                }
+            ],
+            "notebook_task": {
+                "notebook_path": "/Workspace/ps_risk_assessment/04_ai_explanation_generator",
+                "source": "WORKSPACE"
+            },
+            "timeout_seconds": 3600,
+            "max_retries": 1
+        }
+    ],
+    "schedule": {
+        "quartz_cron_expression": "0 0 6 * * ?",
+        "timezone_id": "UTC",
+        "pause_status": "UNPAUSED"
+    },
+    "format": "MULTI_TASK"
+}

@@ -1,0 +1,41 @@
+/* Responsive Grid Overrides for Dash Dashboard */
+
+/* Make charts row responsive */
+@media (min-width: 768px) {
+    #charts-row-1 {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+/* Better card padding on larger screens */
+@media (min-width: 768px) {
+    main>div {
+        padding: 1.5rem !important;
+    }
+}
+
+/* Responsive metric cards */
+@media (max-width: 640px) {
+    [id*="metrics-row"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* Ensure charts don't overflow */
+.js-plotly-plot {
+    max-width: 100% !important;
+    overflow: hidden;
+}
+
+/* Table responsive scrolling */
+table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+@media (min-width: 768px) {
+    table {
+        display: table;
+    }
+}

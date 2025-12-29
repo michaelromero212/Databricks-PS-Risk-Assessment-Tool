@@ -1,0 +1,7 @@
+customer_name,industry,start_date,target_completion_date,scope_size,sa_assigned,sa_confidence_score
+Global Retail Corp,Retail,2025-01-15,2025-04-15,large,John Smith,3
+Healthcare Analytics Inc,Healthcare,2025-02-01,2025-05-01,medium,Jane Doe,4
+FinTech Solutions,Financial Services,2025-01-20,2025-03-20,small,Mike Wilson,5
+Manufacturing Plus,Manufacturing,2025-02-10,2025-06-10,large,Sarah Chen,2
+Energy Systems Co,Energy,2025-01-25,2025-04-25,medium,David Kim,4
+Tech Startup Alpha,Technology,2025-02-15,2025-05-15,small,Emily Rodriguez,3
