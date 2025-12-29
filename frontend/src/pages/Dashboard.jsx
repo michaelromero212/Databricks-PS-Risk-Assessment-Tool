@@ -100,18 +100,8 @@ function Dashboard() {
 
     const trendData = generateTrendData();
 
-    // Loading state
-    if (loading) {
-        return (
-            <div className="loading-container">
-                <div className="loading-spinner"></div>
-                <p className="loading-text">Loading dashboard...</p>
-            </div>
-        );
-    }
-
-    // Error state
-    if (error) {
+    // Error state - only show if error AND no data
+    if (error && !metrics) {
         return (
             <div className="empty-state">
                 <div className="empty-state-icon">⚠️</div>
@@ -125,7 +115,25 @@ function Dashboard() {
     }
 
     return (
-        <div className="dashboard">
+        <div className="dashboard" style={{ opacity: loading ? 0.7 : 1, transition: 'opacity 0.2s ease' }}>
+            {/* Subtle loading indicator */}
+            {loading && (
+                <div style={{
+                    position: 'fixed',
+                    top: '70px',
+                    right: '20px',
+                    background: 'var(--color-bg-primary)',
+                    padding: '8px 16px',
+                    borderRadius: 'var(--radius-md)',
+                    boxShadow: 'var(--shadow-md)',
+                    zIndex: 100,
+                    fontSize: 'var(--font-size-sm)',
+                    color: 'var(--color-text-muted)'
+                }}>
+                    Refreshing...
+                </div>
+            )}
+
             {/* Page Header */}
             <div className="dashboard-header">
                 <div className="page-header">
