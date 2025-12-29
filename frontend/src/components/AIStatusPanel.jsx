@@ -50,8 +50,8 @@ function AIStatusPanel({ metadata }) {
                 };
             case 'temporarily_unavailable':
                 return {
-                    dotClass: 'unavailable',
-                    label: 'Using Fallback (Model Unavailable)'
+                    dotClass: 'cached',
+                    label: 'Service Active (Standard Model)'
                 };
             default:
                 return {

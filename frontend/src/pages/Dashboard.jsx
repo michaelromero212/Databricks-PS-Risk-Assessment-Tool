@@ -128,9 +128,6 @@ function Dashboard() {
         <div className="dashboard">
             {/* Page Header */}
             <div className="dashboard-header">
-                {/* Databricks Workspace Status - Top level integration awareness */}
-                <WorkspaceStatus />
-
                 <div className="page-header">
                     <h1 className="dashboard-title">Analytics Dashboard</h1>
                     <p className="page-subtitle">Real-time insights across all Professional Services engagements</p>
