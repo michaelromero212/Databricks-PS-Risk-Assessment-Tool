@@ -54,7 +54,7 @@ const UnityCatalogBrowser = () => {
         <div className="uc-browser card">
             <div className="card-header">
                 <h3 className="card-title">Unity Catalog Browser</h3>
-                <p className="card-subtitle">Live workspace metadata</p>
+                <p className="card-subtitle">Browse your Databricks workspace catalogs and schemas</p>
             </div>
 
             <div className="uc-browser-content">
@@ -67,13 +67,13 @@ const UnityCatalogBrowser = () => {
                             onClick={() => handleCatalogClick(cat.name)}
                         >
                             <span className="catalog-name">{cat.name}</span>
-                            <span className="schema-count badge">{cat.schema_count} schemas</span>
+                            <span className="schema-count badge">{cat.schema_count}</span>
                         </div>
                     ))}
                 </div>
 
                 <div className="schema-list">
-                    <h4>Schemas in {selectedCatalog || '...'}</h4>
+                    <h4>Schemas in <strong>{selectedCatalog || '...'}</strong></h4>
                     {loading ? (
                         <div className="loading-spinner-small">Loading...</div>
                     ) : error ? (
@@ -100,13 +100,20 @@ const UnityCatalogBrowser = () => {
                 __html: `
                 .uc-browser-content {
                     display: grid;
-                    grid-template-columns: 250px 1fr;
+                    grid-template-columns: 200px 1fr;
                     gap: var(--space-6);
-                    min-height: 300px;
+                    min-height: 280px;
                 }
                 .catalog-list {
                     border-right: 1px solid var(--color-border);
                     padding-right: var(--space-4);
+                }
+                .catalog-list h4 {
+                    margin-bottom: var(--space-3);
+                    font-size: var(--font-size-sm);
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                    color: var(--color-text-muted);
                 }
                 .catalog-item {
                     padding: var(--space-2) var(--space-3);
@@ -115,8 +122,16 @@ const UnityCatalogBrowser = () => {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    gap: var(--space-2);
                     margin-bottom: var(--space-1);
                     transition: background var(--transition-fast);
+                    font-size: var(--font-size-sm);
+                }
+                .catalog-name {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    flex: 1;
                 }
                 .catalog-item:hover {
                     background: var(--color-bg-hover);
@@ -126,12 +141,21 @@ const UnityCatalogBrowser = () => {
                     color: white;
                 }
                 .catalog-item.active .badge {
-                    background: rgba(255,255,255,0.2);
+                    background: rgba(255,255,255,0.25);
                     color: white;
+                }
+                .catalog-item .badge {
+                    flex-shrink: 0;
+                    min-width: 24px;
+                    text-align: center;
+                }
+                .schema-list h4 {
+                    margin-bottom: var(--space-3);
+                    font-size: var(--font-size-base);
                 }
                 .schema-grid {
                     display: grid;
-                    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
                     gap: var(--space-3);
                 }
                 .schema-card {
@@ -143,6 +167,7 @@ const UnityCatalogBrowser = () => {
                 .schema-name {
                     font-weight: var(--font-weight-bold);
                     margin-bottom: var(--space-1);
+                    font-size: var(--font-size-sm);
                 }
                 .table-count {
                     font-size: var(--font-size-xs);
@@ -152,6 +177,7 @@ const UnityCatalogBrowser = () => {
                     font-size: var(--font-size-xs);
                     margin-top: var(--space-2);
                     font-style: italic;
+                    color: var(--color-text-muted);
                 }
                 @media (max-width: 768px) {
                     .uc-browser-content {

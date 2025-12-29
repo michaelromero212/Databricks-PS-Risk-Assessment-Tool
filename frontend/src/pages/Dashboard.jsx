@@ -314,7 +314,7 @@ function Dashboard() {
                                         <td className="customer-name">{eng.customer_name}</td>
                                         <td>{eng.industry}</td>
                                         <td>
-                                            <span className={`risk - badge - small risk - badge - ${eng.risk_level?.toLowerCase()} `}>
+                                            <span className={`risk-badge-small risk-badge-${eng.risk_level?.toLowerCase()}`}>
                                                 {eng.risk_level}
                                             </span>
                                         </td>
@@ -342,9 +342,9 @@ function Dashboard() {
                     <h3 className="dashboard-card-title">AI Model Status</h3>
                     <div className="ai-status-content">
                         <div className="ai-status-indicator">
-                            <span className={`ai - status - dot ${aiStatus?.model_loaded ? 'active' : 'inactive'} `}></span>
+                            <span className={`ai-status-dot ${aiStatus?.model_loaded ? 'active' : 'inactive'}`}></span>
                             <span className="ai-status-text">
-                                {aiStatus?.model_loaded ? 'Model Ready' : 'Using Fallback'}
+                                {aiStatus?.model_loaded ? 'Model Ready' : 'Standard Mode'}
                             </span>
                         </div>
                         <div className="ai-status-grid">
