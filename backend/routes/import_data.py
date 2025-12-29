@@ -195,14 +195,26 @@ def import_engagements():
         return jsonify({'error': f'Failed to parse CSV: {str(e)}'}), 500
 
 
-def _generate_sample_signals(store, engagement_id: str, start_date: datetime):
+def _generate_sample_signals(store, engagement_id: str, start_date):
     """Generate sample platform signals for a new engagement."""
     import random
+    from datetime import date as date_type
+    
+    # Convert start_date to date if it's a datetime
+    if isinstance(start_date, datetime):
+        start_date_normalized = start_date.date()
+    elif isinstance(start_date, date_type):
+        start_date_normalized = start_date
+    else:
+        start_date_normalized = datetime.now().date() - timedelta(days=14)
     
     # Generate signals for the past 14 days
     for i in range(14):
-        signal_date = datetime.now() - timedelta(days=13-i)
-        if signal_date < start_date:
+        signal_datetime = datetime.now() - timedelta(days=13-i)
+        signal_date = signal_datetime.date()
+        
+        # Skip if signal date is before engagement start
+        if signal_date < start_date_normalized:
             continue
             
         signal = PlatformSignal(
@@ -213,7 +225,7 @@ def _generate_sample_signals(store, engagement_id: str, start_date: datetime):
             avg_job_duration_seconds=random.uniform(80, 180),
             notebook_execution_count=random.randint(5, 20),
             sql_query_count=random.randint(20, 100),
-            last_activity_timestamp=signal_date.replace(hour=15, minute=0, second=0),
+            last_activity_timestamp=signal_datetime.replace(hour=15, minute=0, second=0),
         )
         store.add_signal(signal)
 
